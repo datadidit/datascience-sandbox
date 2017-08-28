@@ -1,0 +1,9 @@
+= Azure ML Client Example 
+
+Creates a REST resource for talking to azure over http w/ Java.
+
+== Running
+
+----
+mvn -Dauthorization=<key> -Djetty.http.port=<port> jetty:run
+----

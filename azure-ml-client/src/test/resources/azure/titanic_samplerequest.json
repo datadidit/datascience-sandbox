@@ -1,0 +1,39 @@
+{
+  "Inputs": {
+    "input1": {
+      "ColumnNames": [
+        "Survived",
+        "Pclass",
+        "Sex",
+        "Age",
+        "SibSp",
+        "Parch",
+        "Fare",
+        "Embarked"
+      ],
+      "Values": [
+        [
+          "0",
+          "1",
+          "female",
+          "0",
+          "0",
+          "0",
+          "0",
+          "C"
+        ],
+        [
+          "0",
+          "1",
+          "female",
+          "0",
+          "0",
+          "0",
+          "0",
+          "C"
+        ]
+      ]
+    }
+  },
+  "GlobalParameters": {}
+}
