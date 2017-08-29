@@ -24,6 +24,7 @@
 			</md-input-container>
 			<md-input-container>
 				<label for="embarked">Embarked</label>
+				<md-tooltip md-direction="top">Port of Embarkation</md-tooltip>
 				<md-select name="embarked" id="embarked" v-model="embarked">
 					<md-option value="C">Cherbourg</md-option>
 					<md-option value="Q">Queenstown</md-option>
@@ -40,18 +41,22 @@
 			<md-input-container>
 				<label>Age</label>
 				<md-input type="number" v-model="age"></md-input>
+    			<md-tooltip md-direction="top">Age in years</md-tooltip>				
 			</md-input-container>
 			<md-input-container>
 				<label>Parch</label>
-				<md-input type="number" v-model="parch"></md-input>
+    			<md-tooltip md-direction="top"># of parents/children aboard the Titanic</md-tooltip>
+				<md-input type="number" v-model="parch"></md-input>		
 			</md-input-container>
 			<md-input-container>
 				<label>sibsp</label>
 				<md-input type="number" v-model="sibsp"></md-input>
+    			<md-tooltip md-direction="top"># of siblings/children aboard the Titanic</md-tooltip>				
 			</md-input-container>
 			<md-input-container>
 				<label>Fare</label>
 				<md-input type="number" v-model="fare"></md-input>
+    			<md-tooltip md-direction="top">Passenger Fare</md-tooltip>
 			</md-input-container>
 		<div>
 		<md-button @click="makePrediction" class="md-raised md-primary" :disabled="predictiondisabled">Predict Survival</md-button>
