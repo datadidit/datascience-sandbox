@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const state = {
 	titanic : {
-    url: 'http://localhost:8181/titanic',
+    url: 'http://0.0.0.0:8181/titanic',
     response: {}
 	}
 }
