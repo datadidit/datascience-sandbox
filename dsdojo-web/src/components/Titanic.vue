@@ -1,75 +1,74 @@
 <template>
 	<div>
-		<md-toolbar>
-			  <h2 class="md-title" style="flex: 1">Titanic Simulation</h2>
-		</md-toolbar>
-		<md-toolbar class="md-accent">
-			  <h2 class="md-title" style="flex: 1">Survival Score: {{ this.survivalscore }}</h2>
-		</md-toolbar>
-		<md-input-container>
-			<label for="survived">Survived</label>
-			<md-select name="survived" id="survived" v-model="survived">
-				<md-option value="1">Survived</md-option>
-				<md-option value="0">Died</md-option>
-			</md-select>
-		</md-input-container>		
-		<md-input-container>
-			<label for="ticketclass">Ticket Class</label>
-			<md-select name="ticketclass" id="ticketclass" v-model="ticketclass">
-				<md-option value="1">1st</md-option>
-				<md-option value="2">2nd</md-option>
-				<md-option value="3">3rd</md-option>
-			</md-select>
-		</md-input-container>
-		<md-input-container>
-			<label for="embarked">Embarked</label>
-			<md-select name="embarked" id="embarked" v-model="embarked">
-				<md-option value="C">Cherbourg</md-option>
-				<md-option value="Q">Queenstown</md-option>
-				<md-option value="S">Southampton</md-option>
-			</md-select>
-		</md-input-container>
-		<md-input-container>
-			<label for="sex">Sex</label>
-			<md-select name="sex" id="sex" v-model="sex">
-				<md-option value="M">Male</md-option>
-				<md-option value="F">Female</md-option>
-			</md-select>
-		</md-input-container>
-		<md-input-container>
-			<label>Age</label>
-			<md-input type="number" v-model="age"></md-input>
-		</md-input-container>
-		<md-input-container>
-			<label>Parch</label>
-			<md-input type="number" v-model="parch"></md-input>
-		</md-input-container>
-		<md-input-container>
-			<label>sibsp</label>
-			<md-input type="number" v-model="sibsp"></md-input>
-		</md-input-container>
-		<!--
-		<md-input-container>
-			<label>cabin</label>
-			<md-input type="number" v-model="cabin"></md-input>
-		</md-input-container>
-		-->
-		<md-input-container>
-			<label>Fare</label>
-			<md-input type="number" v-model="fare"></md-input>
-		</md-input-container>
 		<div>
-			<md-button @click="makePrediction" class="md-raised md-primary" :disabled="predictiondisabled">Predict Survival</md-button>
-			<md-button @click="reset" class="md-raised md-primary">Reset</md-button>
+			<md-toolbar>
+				<h2 class="md-title" style="flex: 1">Titanic Simulation</h2>
+			</md-toolbar>
+			<md-toolbar class="md-accent">
+				<h2 class="md-title" style="flex: 1">Survival Score: {{ this.survivalscore }}</h2>
+			</md-toolbar>
+			<md-input-container>
+				<label for="survived">Survived</label>
+				<md-select name="survived" id="survived" v-model="survived">
+					<md-option value="1">Survived</md-option>
+					<md-option value="0">Died</md-option>
+				</md-select>
+			</md-input-container>		
+			<md-input-container>
+				<label for="ticketclass">Ticket Class</label>
+				<md-select name="ticketclass" id="ticketclass" v-model="ticketclass">
+					<md-option value="1">1st</md-option>
+					<md-option value="2">2nd</md-option>
+					<md-option value="3">3rd</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container>
+				<label for="embarked">Embarked</label>
+				<md-select name="embarked" id="embarked" v-model="embarked">
+					<md-option value="C">Cherbourg</md-option>
+					<md-option value="Q">Queenstown</md-option>
+					<md-option value="S">Southampton</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container>
+				<label for="sex">Sex</label>
+				<md-select name="sex" id="sex" v-model="sex">
+					<md-option value="M">Male</md-option>
+					<md-option value="F">Female</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container>
+				<label>Age</label>
+				<md-input type="number" v-model="age"></md-input>
+			</md-input-container>
+			<md-input-container>
+				<label>Parch</label>
+				<md-input type="number" v-model="parch"></md-input>
+			</md-input-container>
+			<md-input-container>
+				<label>sibsp</label>
+				<md-input type="number" v-model="sibsp"></md-input>
+			</md-input-container>
+			<md-input-container>
+				<label>Fare</label>
+				<md-input type="number" v-model="fare"></md-input>
+			</md-input-container>
+		<div>
+		<md-button @click="makePrediction" class="md-raised md-primary" :disabled="predictiondisabled">Predict Survival</md-button>
+		<md-button @click="reset" class="md-raised md-primary">Reset</md-button>
+	</div>
+	<div v-if="loading" class="modal-mask">
+		<div class="modal-wrapper">
+			<div class="spinner-container">
+				<md-spinner :md-size="150" md-indeterminate></md-spinner>
+			</div>
 		</div>
 	</div>
+</div>	
+</div>
 </template>
 
 <script>
-	//TODO Move this to actions once you have vuex working 
-	import axios from 'axios'
-	var url = "http://localhost:8181/titanic/"
-
 	export default {
 		name: 'titanic',
 		data(){
@@ -82,7 +81,7 @@
 				parch: '',
 				sibsp: '',
 				fare: '',
-				predictiondisabled: false
+				predictiondisabled: true
 			}
 		},
 		computed: {
@@ -97,6 +96,9 @@
 			},
 			url(){
 				return this.$store.getters.titanicurl
+			},
+			loading(){
+				return this.$store.getters.titanicloading
 			}
 		},
 		methods: {
@@ -113,8 +115,6 @@
 				this.$store.dispatch('resettitanic')	
 			},
 			makePrediction(){
-				console.log("Clicked Make prediction")
-
 				//Create Json from input 
 				var obj = new Object()
 				obj.Inputs = {}
@@ -133,16 +133,41 @@
 				var json = JSON.stringify(obj)
 
 				this.$store.dispatch('titanicSurvivalPrediction', json)
+			},
+			ispredictiondisabled(){
+				if(this.survived=='' || this.ticketclass=='' || this.embarked=='' || this.sex=='' || this.age==''
+					|| this.parch=='' || this.sibsp=='' || this.fare==''){
+					this.predictiondisabled = true
+				}else{
+					this.predictiondisabled = false
+				}
 			}
 		},
 		watch:{
-			predictiondisabled(){
-				if(this.survived=='' || this.ticketclass=='' || this.embarked=='' || this.sex=='' || this.age==''
-					|| this.parch=='' || this.sibsp=='' || this.fare==''){
-					return true
-				}else{
-					return false
-				}
+			//TODO do this cleaner
+			survived(){
+				this.ispredictiondisabled()
+			},
+			age(){
+				this.ispredictiondisabled()
+			},
+			ticketclass(){
+				this.ispredictiondisabled()
+			},
+			embarked(){
+				this.ispredictiondisabled()				
+			},
+			sex(){
+				this.ispredictiondisabled()				
+			},
+			parch(){
+				this.ispredictiondisabled()				
+			},
+			sibsp(){
+				this.ispredictiondisabled()				
+			},
+			fare(){
+				this.ispredictiondisabled()				
 			}
 		}
 	/*computed: {
@@ -158,3 +183,28 @@
 	}*/
 }
 </script>
+
+<style>
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.spinner-container {
+  width: 300px;
+  margin: 0px auto;
+  transition: all .3s ease;
+}
+</style>

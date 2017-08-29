@@ -3,6 +3,8 @@ import axios from 'axios'
 export const titanicSurvivalPrediction = ({commit, getters}, json) => {
 	var url = getters.titanicurl 
 
+	commit('loadingTitanic', true)
+
 	axios.post(url, json, {
 		headers: {
 			'Content-Type': "application/json",
@@ -15,6 +17,7 @@ export const titanicSurvivalPrediction = ({commit, getters}, json) => {
 		obj.value = response.data
 		
 		commit('updateTitanicState', obj)
+		commit('loadingTitanic', false);
 	})
 	.catch(function(error){
 		console.log(error)

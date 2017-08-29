@@ -1,5 +1,5 @@
 export const updateTitanicState = (state, obj) => {
-	console.log("Got an object")
+	console.log("Debug")
 	console.log(obj)
 	if(obj.key == "survivalresult"){
 		state.titanic.response = obj.value
@@ -10,4 +10,8 @@ export const updateTitanicState = (state, obj) => {
 
 export const resettitanic = (state) => {
 	state.titanic.response = {}
+}
+
+export const loadingTitanic = (state, loading) => {
+	state.titanic.loading = loading
 }

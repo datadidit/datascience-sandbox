@@ -9,7 +9,8 @@ Vue.use(Vuex)
 const state = {
 	titanic : {
     url: 'http://45.55.63.200/rest/titanic/',
-    response: {}
+    response: {},
+    loading: false
 	}
 }
 
