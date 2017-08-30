@@ -13,7 +13,7 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/Titanic',
+      path: '/',
       name: 'Titanic',
       component: Titanic
     }
