@@ -1,0 +1,65 @@
+= Machine Learning 
+
+== Coursera Week 1 Notes
+
+* Square Cost Function is used to determine how good your regression model is. 
+* Plot your cost function to find the value that minimizes your cost.  [Cost Function Intuition I]
+* Gradient Descent algorithm for finding the cost of `n` thetas much more general than initial cost function documented in course.
+* Make sure to implement Gradient Descent w/ Simultaneous update of the thetas.
+* Learning rate if it's too small gradient descent will be slow. If it's too large you'll continually overshoot optimal cost.
+* Cost function for linear regression will always be convex(bowl shaped) no local optima will always converge to global optima
+* Batch Gradient Descent looks at sums of all the training examples when computing descent.
+
+== Week 2 Notes
+
+* Feature Scaling can help gradient descent converge faster in multivariate linear regression. 
+* Ideally Features Scaling get every feature between `-1<x<1` 
+** Just want range of values to be similar
+** Mean normalization used to make a feature have zero mean. 
+* Graphing cost function is a really good way to keep track of if your gradient descent is working. 
+
+== Week 3 Notes
+
+* Advanced algorithms for gradient descent:
+** Conjugate Gradient, BFGS, L-BFGS
+*** No need to manually pick `learning rate`
+*** Ofter faster than gradient descent.
+*** Good for larger problems since it's faster. 
+* Multi Class Classification 
+** One vs. All method use logistic regression for each Class and then find the max from the 
+logistic regression algorithm for each class. 
+* Decision Boundary 
+** h(x) >= 0, y=1
+* Remember you can use higher order polynomials to help fit complex scenarios. 
+* Regularization
+** Tries to minimize theta's for each variable to ensure there's no overfitting
+
+== Week 4 Notes
+
+* Regression becomes expensive when trying to fit complex problems w/ a large number of features 
+and can lead to overfitting
+* Computer vision is done via looking at pixels on an image which gets things down to binary data the computer can understand. 
+* To use negation in nueral networks add a large negative coeficient in front of the variable you're trying to negate. 
+
+== Week 7 Notes(SVM)
+
+* Large C: Lower bias, high variance
+* Small C: Higher bias, low variance
+* Large Sigma: Features f vary more smoothly. Higher bias, lower variance.
+* Small Sigma: Features f, vary less smoothly. Lower bias, higher variance.
+* Liblinear/Libsvm popular SVM Software packages. Don't try to write on your own stand on the shoulders of Giants!
+* Don't need to implement algorithm but you do need to:
+** Choice of parameter C
+** Choice of kernel(similarity function)
+** If you're features are of varying scales make sure to perform feature scaling before using Kernel
+** If N(number of features) is large use Logistic Regression/SVM without a Kernel(linear kernel)
+** If N is samll, m(number of training examples) is intermediate use SVM w/ Gaussian Kernel.
+** If N is small, m is large(50,000+) create/add more features, then use logistic regression/svm without a kernel
+
+== Week 8 Notes(Unsupervised Learning)
+
+* Finds structure in unstructured data(e.g. isn't going by labels discover clusters on it's own.)
+** Social Network Analysis
+** Market Segmentation
+* Dimensionality Reduction
+** Reduce data from 2D to 1D because of redundant features(Data Compression)
